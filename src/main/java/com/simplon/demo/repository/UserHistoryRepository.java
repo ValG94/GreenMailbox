@@ -1,6 +1,6 @@
-package com.simplon.demo.Repository;
+package com.simplon.demo.repository;
 
-import com.simplon.demo.Model.UserHistory;
+import com.simplon.demo.model.UserHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

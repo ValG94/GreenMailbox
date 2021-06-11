@@ -1,4 +1,4 @@
-package com.simplon.demo.Model;
+package com.simplon.demo.model;
 
 import javax.persistence.*;
 import java.util.List;

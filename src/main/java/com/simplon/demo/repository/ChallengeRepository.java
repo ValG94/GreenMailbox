@@ -1,6 +1,6 @@
-package com.simplon.demo.Repository;
+package com.simplon.demo.repository;
 
-import com.simplon.demo.Model.Challenge;
+import com.simplon.demo.model.Challenge;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

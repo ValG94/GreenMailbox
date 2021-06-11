@@ -1,6 +1,6 @@
-package com.simplon.demo.Repository;
+package com.simplon.demo.repository;
 
-import com.simplon.demo.Model.Event;
+import com.simplon.demo.model.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
