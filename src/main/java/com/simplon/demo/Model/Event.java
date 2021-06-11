@@ -1,10 +1,8 @@
 package com.simplon.demo.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Event {
@@ -14,9 +12,12 @@ public class Event {
 
     private LocalDate dateDebut, endDate;
     private String eventName;
-    private String comentEvent;
-    // TODO
-    //AJOUTER LES CLES ETRANGERES
+    private String commentEvent;
+
+    @OneToMany
+    private List<Resource> resourceList;
+    @OneToMany
+    private List<Challenge> challengeList;
 
 
 }

@@ -1,14 +1,20 @@
 package com.simplon.demo.Model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class UserChallenge {
 
-    //TODO = vérifier comment construire cette table intermédaire
-    // le type de relation
-    private User userIdx;
-    private List<Challenge> ChallengeIdx;
-    private List<Status> statusIdx;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_challenge_id_seq")
+    @ManyToOne
+    private User user;
+
+    @OneToMany
+    private List<Challenge> challengeList;
+    @OneToMany
+    private List<Status> statusList;
+
+
 }

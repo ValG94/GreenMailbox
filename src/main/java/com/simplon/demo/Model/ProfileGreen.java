@@ -6,9 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ProfilGreen {
+public class ProfileGreen {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profilgreen_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_green_id_seq")
     private int id;
-    private String profil;
+    private String profile;
+    private int threshold;
 }

@@ -1,11 +1,8 @@
 package com.simplon.demo.Model;
 
 
-mport javax.persistence.Entity;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class UserHistory {
@@ -16,8 +13,8 @@ public class UserHistory {
 
     private Long score;
 
-    //TODO vérifier comment construire la relation
-    private UserChallenge userChallenge;
-    //private Greenprofile greenProfile;
+    @ManyToOne
+    private User user;
+
 
 }

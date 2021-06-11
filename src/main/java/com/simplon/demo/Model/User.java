@@ -1,9 +1,7 @@
 package com.simplon.demo.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,9 +14,12 @@ public class User {
         private String mail;
         private String password;
         private String userRight;
-        private Long userChoiceFrequenceChallenge;
+        private Long userChoiceFrequencyChallenge;
         private Long userChoiceChallengeDifficulty;
-        //TODO
-        private UserHistory userHistory;
+        @OneToMany
+        private List<UserHistory> userHistory;
+        @OneToMany
+        private List<UserChallenge> userChallenges;
+
 
     }
