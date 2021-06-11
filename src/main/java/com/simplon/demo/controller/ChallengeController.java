@@ -31,14 +31,14 @@ public class ChallengeController {
         challengeRepository.save(challengeToCreate);
     }
 
-    /*//Methode qui nous permettra de mettre à jour un challenge en BDD avec l'id
+    //Methode qui nous permettra de mettre à jour un challenge en BDD avec l'id
     @PutMapping(value = "/{id}")
     public ResponseEntity<Challenge> updateJson(@PathVariable("id") int id, @RequestBody Challenge resource) {
-        if (!resource.getId().equals(id)) {
+        if (resource.getId()!=id) {
             return new ResponseEntity<>(resource, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(challengeRepository.save(resource), HttpStatus.OK);
-    }*/
+    }
 
     //Méthode qui nous permettra de supprimer des challenges grâce à leur id
     @DeleteMapping("/{id}")

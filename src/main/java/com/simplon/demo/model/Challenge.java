@@ -29,6 +29,10 @@ public class Challenge {
         this.contentChallengeList = contentChallengeList;
     }
 
+    public Challenge() {
+
+    }
+
     public int getId() {
         return id;
     }
