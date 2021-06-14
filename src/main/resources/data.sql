@@ -14,4 +14,3 @@ insert into status (id, status) values
 (3, 'On going', 3),
 (4, 'To do', 4);
 
-insert into

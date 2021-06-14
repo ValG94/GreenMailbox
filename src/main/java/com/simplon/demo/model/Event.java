@@ -56,6 +56,43 @@ public class Event {
         this.endDate = endDate;
     }
 
+    public Event() {
+    }
+
+    public Event(int id, LocalDate dateDebut, LocalDate endDate, String eventName, String commentEvent, List<Resource> resourceList, List<Challenge> challengeList) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.endDate = endDate;
+        this.eventName = eventName;
+        this.commentEvent = commentEvent;
+        this.resourceList = resourceList;
+        this.challengeList = challengeList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
     public String getEventName() {
         return eventName;
     }

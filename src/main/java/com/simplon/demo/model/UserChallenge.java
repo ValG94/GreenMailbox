@@ -27,20 +27,4 @@ public class UserChallenge {
         this.statusList = statusList;
     }
 
-    public EndUser getUser() {
-        return endUser;
-    }
-
-    public void setUser(EndUser endUser) {
-        this.endUser = endUser;
-    }
-
-    @Override
-    public String toString() {
-        return "UserChallenge{" +
-                "user=" + endUser +
-                ", challengeList=" + challengeList +
-                ", statusList=" + statusList +
-                '}';
-    }
 }
