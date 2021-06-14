@@ -39,13 +39,13 @@ public class UserController {
         userRepository.delete(userToDelete);
     }
 
-   //TO REVIEW
+    //TO REVIEW
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateJson (@PathVariable ("id") Long id, @RequestBody User userToModify) {
+    public ResponseEntity<User> updateJson(@PathVariable("id") Long id, @RequestBody User userToModify) {
         if (!userToModify.getId().equals(id)) {
             return new ResponseEntity<>(userToModify, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(userRepository.save(userToModify), HttpStatus.OK); // userRepository.(id, userToModify)
-        }
+        return new ResponseEntity<>(userRepository.save(userToModify), HttpStatus.OK);
     }
 }
+
