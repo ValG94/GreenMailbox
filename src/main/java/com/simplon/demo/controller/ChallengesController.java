@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/challenge")
-public class ChallengeController {
+@RequestMapping("/api/challenges")
+public class ChallengesController {
     private ChallengeRepository challengeRepository;
 
-    public ChallengeController(ChallengeRepository challengeRepository) {
+    public ChallengesController(ChallengeRepository challengeRepository) {
         this.challengeRepository = challengeRepository;
     }
 

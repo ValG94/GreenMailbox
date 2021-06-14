@@ -8,7 +8,9 @@ public class UserChallenge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_challenge_id_seq")
+    private Long id;
     @ManyToOne
+
     private User user;
 
     @OneToMany
