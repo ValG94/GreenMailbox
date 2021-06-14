@@ -1,4 +1,4 @@
 package com.simplon.demo.controller;
 
-public class ProfilGreenController {
+public class EventsController {
 }

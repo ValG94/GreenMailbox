@@ -5,7 +5,8 @@ import java.util.List;
 
 
 @Entity
-public class User {
+public class EndUser {
+
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
     private Long id;
@@ -16,12 +17,13 @@ public class User {
     private String userRight;
     private Long userChoiceFrequencyChallenge;
     private Long userChoiceChallengeDifficulty;
+
     @OneToMany
     private List<UserHistory> userHistory;
     @OneToMany
     private List<UserChallenge> userChallenges;
 
-    public User() {
+    public EndUser() {
     }
 
     public Long getId() {
@@ -96,7 +98,7 @@ public class User {
         this.userChallenges = userChallenges;
     }
 
-    public User(Long id, String name, String mail, String password, String userRight, Long userChoiceFrequencyChallenge, Long userChoiceChallengeDifficulty, List<UserHistory> userHistory, List<UserChallenge> userChallenges) {
+    public EndUser(Long id, String name, String mail, String password, String userRight, Long userChoiceFrequencyChallenge, Long userChoiceChallengeDifficulty, List<UserHistory> userHistory, List<UserChallenge> userChallenges) {
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -107,8 +109,6 @@ public class User {
         this.userHistory = userHistory;
         this.userChallenges = userChallenges;
     }
-
-
 
 
     @Override
