@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/resources")
-public class ResourceController {
+public class ResourcesController {
 
     private ResourceRepository resourceRepository;
 
-    public ResourceController(ResourceRepository resourceRepository) {
+    public ResourcesController(ResourceRepository resourceRepository) {
         this.resourceRepository = resourceRepository;
     }
 

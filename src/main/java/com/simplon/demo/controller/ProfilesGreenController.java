@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/profilegreen")
-public class ProfilGreenController {
+public class ProfilesGreenController {
 
     private ProfileGreenRepository profileGreenRepository;
 
-    public ProfilGreenController(ProfileGreenRepository profileGreenRepository) {
+    public ProfilesGreenController(ProfileGreenRepository profileGreenRepository) {
         this.profileGreenRepository = profileGreenRepository;
     }
 

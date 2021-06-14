@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @RestController
 
-public class UserHistoryController {
+public class UsersHistoriesController {
 
     private UserHistoryRepository userHistoryRepository;
 
-    public UserHistoryController(UserHistoryRepository userHistoryRepository) {
+    public UsersHistoriesController(UserHistoryRepository userHistoryRepository) {
         this.userHistoryRepository = userHistoryRepository;
     }
 

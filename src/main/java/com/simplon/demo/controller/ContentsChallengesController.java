@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/contents")
-public class ContentChallengeController {
+public class ContentsChallengesController {
     private ContentChallengeRepository contentChallengeRepository;
 
-    public ContentChallengeController(ContentChallengeRepository contentChallengeRepository) {
+    public ContentsChallengesController(ContentChallengeRepository contentChallengeRepository) {
         this.contentChallengeRepository = contentChallengeRepository;
     }
 

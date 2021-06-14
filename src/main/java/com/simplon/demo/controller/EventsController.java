@@ -14,10 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
-public class EventController {
+public class EventsController {
     private EventRepository eventRepository;
 
-    public EventController(EventRepository eventRepository) {
+    public EventsController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
 
