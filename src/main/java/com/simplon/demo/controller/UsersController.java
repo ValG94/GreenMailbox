@@ -1,6 +1,6 @@
 package com.simplon.demo.controller;
 
-import com.simplon.demo.model.User;
+import com.simplon.demo.model.EndUser;
 import com.simplon.demo.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,32 +20,32 @@ public class UsersController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<EndUser> getAllUsers() {
         return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUserById(@PathVariable Long id) {
+    public Optional<EndUser> getUserById(@PathVariable Long id) {
         return userRepository.findById(id);
     }
 
     @PostMapping
-    public void createUser(@RequestBody User userToCreate) {
-        userRepository.save(userToCreate);
+    public void createUser(@RequestBody EndUser endUserToCreate) {
+        userRepository.save(endUserToCreate);
     }
 
     @DeleteMapping
-    public void deleteUser(@RequestBody User userToDelete) {
-        userRepository.delete(userToDelete);
+    public void deleteUser(@RequestBody EndUser endUserToDelete) {
+        userRepository.delete(endUserToDelete);
     }
 
-   //TO REVIEW
+    //TO REVIEW
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateJson (@PathVariable ("id") Long id, @RequestBody User userToModify) {
-        if (!userToModify.getId().equals(id)) {
-            return new ResponseEntity<>(userToModify, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<EndUser> updateJson (@PathVariable ("id") Long id, @RequestBody EndUser endUserToModify) {
+        if (!endUserToModify.getId().equals(id)) {
+            return new ResponseEntity<>(endUserToModify, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(userRepository.save(userToModify), HttpStatus.OK); // userRepository.(id, userToModify)
-        }
+        return new ResponseEntity<>(userRepository.save(endUserToModify), HttpStatus.OK); // userRepository.(id, userToModify)
     }
+}
 

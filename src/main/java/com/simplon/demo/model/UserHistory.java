@@ -14,15 +14,15 @@ public class UserHistory {
     private Long score;
 
     @ManyToOne
-    private User user;
+    private EndUser endUser;
 
     public UserHistory() {
     }
 
-    public UserHistory(Long id, Long score, User user) {
+    public UserHistory(Long id, Long score, EndUser endUser) {
         this.id = id;
         this.score = score;
-        this.user = user;
+        this.endUser = endUser;
     }
 
     public Long getId() {
@@ -41,12 +41,12 @@ public class UserHistory {
         this.score = score;
     }
 
-    public User getUser() {
-        return user;
+    public EndUser getUser() {
+        return endUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(EndUser endUser) {
+        this.endUser = endUser;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class UserHistory {
         return "UserHistory{" +
                 "id=" + id +
                 ", score=" + score +
-                ", user=" + user +
+                ", user=" + endUser +
                 '}';
     }
 }

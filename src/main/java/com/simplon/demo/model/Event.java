@@ -19,7 +19,6 @@ public class Event {
     @OneToMany
     private List<Challenge> challengeList;
 
-
     public Event() {
     }
 
@@ -55,38 +54,6 @@ public class Event {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
-
-    public String getCommentEvent() {
-        return commentEvent;
-    }
-
-    public void setCommentEvent(String commentEvent) {
-        this.commentEvent = commentEvent;
-    }
-
-    public List<Resource> getResourceList() {
-        return resourceList;
-    }
-
-    public void setResourceList(List<Resource> resourceList) {
-        this.resourceList = resourceList;
-    }
-
-    public List<Challenge> getChallengeList() {
-        return challengeList;
-    }
-
-    public void setChallengeList(List<Challenge> challengeList) {
-        this.challengeList = challengeList;
     }
 
     @Override
