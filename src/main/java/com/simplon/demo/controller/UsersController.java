@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class UsersController {
     }
 
     //TO REVIEW
+    @Transactional // en cas d'utilisation du @Modifying
     @PutMapping("/{id}")
     public ResponseEntity<EndUser> updateJson (@PathVariable ("id") Long id, @RequestBody EndUser endUserToModify) {
         if (!endUserToModify.getId().equals(id)) {

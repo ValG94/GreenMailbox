@@ -1,7 +1,9 @@
 package com.simplon.demo.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -17,11 +19,26 @@ public class EndUser {
     private String userRight;
     private Long userChoiceFrequencyChallenge;
     private Long userChoiceChallengeDifficulty;
+    //TODO ajouter le enum profileGreen
 
-    @OneToMany
+    @OneToMany (mappedBy = "endUser")
     private List<UserHistory> userHistory;
-    @OneToMany
-    private List<UserChallenge> userChallenges;
+
+    // Users have several challenges and challenges have several users
+    @ManyToMany
+    @JoinTable (name= "user_challenge",
+            joinColumns = {@JoinColumn(name = "fk_user", referencedColumnName= "id" ) },
+            inverseJoinColumns = { @JoinColumn(name = "fk_challenge", referencedColumnName= "id") })
+    private Set<Challenge> challenges = new HashSet<Challenge>();
+
+
+ //TODO => création d'extraction par statut de challenge
+//    @WhereJoinTable(clause = "status='TO_DO'")
+//    @ManyToMany
+//    @JoinTable(name = "user_challenge", joinColumns = @JoinColumn(name = "fk_user"), inverseJoinColumns = @JoinColumn(name = "fk_challenge"))
+//    private List<Group> moderatorGroups = new ArrayList<>();
+//
+
 
     public EndUser() {
     }
@@ -90,15 +107,7 @@ public class EndUser {
         this.userHistory = userHistory;
     }
 
-    public List<UserChallenge> getUserChallenges() {
-        return userChallenges;
-    }
-
-    public void setUserChallenges(List<UserChallenge> userChallenges) {
-        this.userChallenges = userChallenges;
-    }
-
-    public EndUser(Long id, String name, String mail, String password, String userRight, Long userChoiceFrequencyChallenge, Long userChoiceChallengeDifficulty, List<UserHistory> userHistory, List<UserChallenge> userChallenges) {
+    public EndUser(Long id, String name, String mail, String password, String userRight, Long userChoiceFrequencyChallenge, Long userChoiceChallengeDifficulty, List<UserHistory> userHistory, List<UserChallengeRelation> userChallengeRelations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -107,7 +116,6 @@ public class EndUser {
         this.userChoiceFrequencyChallenge = userChoiceFrequencyChallenge;
         this.userChoiceChallengeDifficulty = userChoiceChallengeDifficulty;
         this.userHistory = userHistory;
-        this.userChallenges = userChallenges;
     }
 
 
@@ -121,10 +129,7 @@ public class EndUser {
                 ", userRight='" + userRight + '\'' +
                 ", userChoiceFrequencyChallenge=" + userChoiceFrequencyChallenge +
                 ", userChoiceChallengeDifficulty=" + userChoiceChallengeDifficulty +
-                ", userHistory=" + userHistory +
-                ", userChallenges=" + userChallenges +
-                '}';
+                ", userHistory=" + userHistory+"}";
     }
-
 
 }

@@ -1,26 +1,35 @@
 package com.simplon.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Challenge {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "challenge_id_seq")
-    private int id;
+    private Long id;
 
     private String nameChallenge;
     private int level;
-    private int likeChallenge;
+    private int likeChallenge; // TODO transformer en enum?
 
     @ManyToOne
     private Event event;
 
-    @OneToMany
+    @JsonIgnore // pour afficher la liste des challenges sans tenir compte du statut des users
+    @ManyToMany
+    private Set<EndUser> endUsers =new HashSet<EndUser>();
+
+    @JsonIgnore // pour afficher la liste des challenges sans le contenu
+    @OneToMany (mappedBy = "challenge")
     private List<ContentChallenge> contentChallengeList;
 
-    public Challenge(int id, String nameChallenge, int level, int likeChallenge, Event event, List<ContentChallenge> contentChallengeList) {
+    public Challenge(Long id, String nameChallenge, int level, int likeChallenge, Event event, List<ContentChallenge> contentChallengeList) {
         this.id = id;
         this.nameChallenge = nameChallenge;
         this.level = level;
@@ -30,10 +39,9 @@ public class Challenge {
     }
 
     public Challenge() {
-
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -57,7 +65,7 @@ public class Challenge {
         return contentChallengeList;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

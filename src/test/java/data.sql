@@ -1,6 +1,6 @@
-insert into movie (id, name, release_date) VALUES
-(1, 'La cité de la peur', '01-06-1994'),
-(2, 'Dikkeken', '04-05-2005');
+insert into end_user (id, name) VALUES
+(1, 'Valery'),
+(2, 'Clara');
 
 insert into profile_green (id, profile, threshold) VALUES
 (1, 'Platinum', 1000),
@@ -11,6 +11,6 @@ insert into profile_green (id, profile, threshold) VALUES
 insert into status (id, status) values
 (1, 'You did it!'),
 (2, 'please try again'),
-(3, 'On going', 3),
-(4, 'To do', 4);
+(3, 'On going'),
+(4, 'To do');
 
