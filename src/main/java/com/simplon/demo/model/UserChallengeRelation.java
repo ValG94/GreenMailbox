@@ -18,5 +18,15 @@ public class UserChallengeRelation implements Serializable {
     @Column(name = "fk_challenge", insertable = false, updatable = false)
     private Long challengeId;
 
-    Status status;
+    @Enumerated(EnumType.STRING)
+            private Status status;
+
+    public UserChallengeRelation() {
+    }
+
+    public UserChallengeRelation(Long userId, Long challengeId, Status status) {
+        this.userId = userId;
+        this.challengeId = challengeId;
+        this.status = status;
+    }
 }

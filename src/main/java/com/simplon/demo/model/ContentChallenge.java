@@ -10,7 +10,7 @@ public class ContentChallenge {
     private Long id;
     private String questions;
     private String answers;
-    private int pointChallenge;
+
 
     @ManyToOne
     private Challenge challenge;
@@ -42,13 +42,6 @@ public class ContentChallenge {
         this.answers = answers;
     }
 
-    public int getPointChallenge() {
-        return pointChallenge;
-    }
-
-    public void setPointChallenge(int pointChallenge) {
-        this.pointChallenge = pointChallenge;
-    }
 
     public Challenge getChallenge() {
         return challenge;
@@ -58,11 +51,10 @@ public class ContentChallenge {
         this.challenge = challenge;
     }
 
-    public ContentChallenge(Long id, String questions, String answers, int pointChallenge, Challenge challenge) {
+    public ContentChallenge(Long id, String questions, String answers, Challenge challenge) {
         this.id = id;
         this.questions = questions;
         this.answers = answers;
-        this.pointChallenge = pointChallenge;
         this.challenge = challenge;
     }
 
@@ -72,7 +64,6 @@ public class ContentChallenge {
                 "id=" + id +
                 ", questions='" + questions + '\'' +
                 ", answers='" + answers + '\'' +
-                ", pointChallenge=" + pointChallenge +
                 ", challenge=" + challenge +
                 '}';
     }

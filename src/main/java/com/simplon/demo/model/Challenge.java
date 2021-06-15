@@ -1,12 +1,10 @@
 package com.simplon.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.WhereJoinTable;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Challenge {
@@ -25,9 +23,22 @@ public class Challenge {
     @ManyToMany
     private Set<EndUser> endUsers =new HashSet<EndUser>();
 
+    // Users have several challenges and challenges have several users
+    @ManyToMany
+    @JoinTable (name= "user_challenge",
+            joinColumns = {@JoinColumn(name = "fk_user", referencedColumnName= "id" ) },
+            inverseJoinColumns = { @JoinColumn(name = "fk_challenge", referencedColumnName= "id") })
+    private Set<Challenge> challenges = new HashSet<Challenge>();
+
+    //création d'extraction par statut de challenge
+    @WhereJoinTable(clause = "status='TO_DO'")
+    @ManyToMany
+    @JoinTable(name = "user_challenge", joinColumns = @JoinColumn(name = "fk_user"), inverseJoinColumns = @JoinColumn(name = "fk_challenge"))
+    private List<Challenge> challengeToDo = new ArrayList<>();
+
     @JsonIgnore // pour afficher la liste des challenges sans le contenu
     @OneToMany (mappedBy = "challenge")
-    private List<ContentChallenge> contentChallengeList;
+        private List<ContentChallenge> contentChallengeList;
 
     public Challenge(Long id, String nameChallenge, int level, int likeChallenge, Event event, List<ContentChallenge> contentChallengeList) {
         this.id = id;
