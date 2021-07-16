@@ -8,10 +8,8 @@ import org.hibernate.annotations.WhereJoinTable;
 import javax.persistence.*;
 import java.util.*;
 
-@JsonIdentityInfo( // permet d'éviter une boucle entre deux objets bidirectionnels
-        // indique l'origine ( notion à bien repréciser)
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+@JsonIdentityInfo( // permet d'éviter une boucle entre deux objets bidirectionnels// indique l'origine ( notion à bien repréciser)
+generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 
 @Entity
 public class Challenge {
@@ -20,6 +18,9 @@ public class Challenge {
     private Long id;
 
     private String nameChallenge;
+    private String imgUrl;
+    private Date dateCreation;
+    private String description;
     private int level;
     private int likeChallenge; // TODO transformer en enum?
 
@@ -28,13 +29,13 @@ public class Challenge {
 
     @JsonIgnore // pour afficher la liste des challenges sans tenir compte du statut des users
     @ManyToMany
-    private Set<EndUser> endUsers =new HashSet<EndUser>();
+    private Set<EndUser> endUsers = new HashSet<EndUser>();
 
     // Users have several challenges and challenges have several users
     @ManyToMany
-    @JoinTable (name= "user_challenge",
-            joinColumns = {@JoinColumn(name = "fk_user", referencedColumnName= "id" ) },
-            inverseJoinColumns = { @JoinColumn(name = "fk_challenge", referencedColumnName= "id") })
+    @JoinTable(name = "user_challenge",
+            joinColumns = {@JoinColumn(name = "fk_user", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "fk_challenge", referencedColumnName = "id")})
     private Set<Challenge> challenges = new HashSet<Challenge>();
 
     //création d'extraction par statut de challenge
@@ -43,15 +44,18 @@ public class Challenge {
     @JoinTable(name = "user_challenge", joinColumns = @JoinColumn(name = "fk_user"), inverseJoinColumns = @JoinColumn(name = "fk_challenge"))
     private List<Challenge> challengeToDo = new ArrayList<>();
 
-     // pour afficher la liste des challenges sans le contenu
-    @OneToMany (mappedBy = "challenge")
-        private List<ContentChallenge> contentChallengeList;
+    @JsonIgnore // pour afficher la liste des challenges sans le contenu
+    @OneToMany(mappedBy = "challenge")
+    private List<ContentChallenge> contentChallengeList;
 
-    public Challenge(Long id, String nameChallenge, int level, int likeChallenge, Event event, List<ContentChallenge> contentChallengeList) {
+    public Challenge(Long id, String nameChallenge, int level, int likeChallenge, String imgUrl, Date dateCreation, String description, Event event, List<ContentChallenge> contentChallengeList) {
         this.id = id;
         this.nameChallenge = nameChallenge;
         this.level = level;
         this.likeChallenge = likeChallenge;
+        this.imgUrl = imgUrl;
+        this.dateCreation = dateCreation;
+        this.description = description;
         this.event = event;
         this.contentChallengeList = contentChallengeList;
     }
@@ -67,6 +71,18 @@ public class Challenge {
         return nameChallenge;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public int getLevel() {
         return level;
     }
@@ -77,6 +93,18 @@ public class Challenge {
 
     public Event getEvent() {
         return event;
+    }
+
+    public Set<EndUser> getEndUsers() {
+        return endUsers;
+    }
+
+    public Set<Challenge> getChallenges() {
+        return challenges;
+    }
+
+    public List<Challenge> getChallengeToDo() {
+        return challengeToDo;
     }
 
     public List<ContentChallenge> getContentChallengeList() {
@@ -110,9 +138,15 @@ public class Challenge {
         return "Challenge{" +
                 "id=" + id +
                 ", nameChallenge='" + nameChallenge + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", dateCreation=" + dateCreation +
+                ", description='" + description + '\'' +
                 ", level=" + level +
                 ", likeChallenge=" + likeChallenge +
                 ", event=" + event +
+                ", endUsers=" + endUsers +
+                ", challenges=" + challenges +
+                ", challengeToDo=" + challengeToDo +
                 ", contentChallengeList=" + contentChallengeList +
                 '}';
     }

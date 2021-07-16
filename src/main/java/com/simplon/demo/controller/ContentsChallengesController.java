@@ -35,7 +35,7 @@ public class ContentsChallengesController {
 
         //Méthode qui nous permettra de créer un nouveau contenu en BDD
         @PostMapping
-        public void createContent(@RequestBody ContentChallenge contentChallengeToCreate){
+        public void createContentChallenge(@RequestBody ContentChallenge contentChallengeToCreate){
             contentChallengeRepository.save(contentChallengeToCreate);
         }
 
