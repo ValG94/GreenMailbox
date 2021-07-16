@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/challenges")
+//@CrossOrigin("http://localhost:4200")
 public class ChallengesController {
     private ChallengeRepository challengeRepository;
 
@@ -25,6 +27,10 @@ public class ChallengesController {
         return challengeRepository.findAll();
     }
 
+    // Retourne un challenge avec l'id
+    @GetMapping("/{id}")
+    public Optional<Challenge> getChallengeById(@PathVariable Long id) { return challengeRepository.findById(id);}
+
     //Méthode qui nous permettra de créer un nouveau challenge en BDD
     @PostMapping
     public void createChallenge(@RequestBody Challenge challengeToCreate){
@@ -33,7 +39,7 @@ public class ChallengesController {
 
     //Methode qui nous permettra de mettre à jour un challenge en BDD avec l'id
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Challenge> updateJson(@PathVariable("id") int id, @RequestBody Challenge resource) {
+    public ResponseEntity<Challenge> updateJson(@PathVariable("id") Long id, @RequestBody Challenge resource) {
         if (resource.getId()!=id) {
             return new ResponseEntity<>(resource, HttpStatus.BAD_REQUEST);
         }

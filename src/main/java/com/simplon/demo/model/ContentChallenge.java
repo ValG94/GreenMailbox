@@ -1,6 +1,14 @@
 package com.simplon.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+
+@JsonIdentityInfo( // permet d'éviter une boucle entre deux objets bidirectionnels
+        // indique l'origine ( notion à bien repréciser)
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 
 @Entity
 public class ContentChallenge {

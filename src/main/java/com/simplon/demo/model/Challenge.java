@@ -1,10 +1,17 @@
 package com.simplon.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.WhereJoinTable;
 
 import javax.persistence.*;
 import java.util.*;
+
+@JsonIdentityInfo( // permet d'éviter une boucle entre deux objets bidirectionnels
+        // indique l'origine ( notion à bien repréciser)
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 
 @Entity
 public class Challenge {
@@ -36,7 +43,7 @@ public class Challenge {
     @JoinTable(name = "user_challenge", joinColumns = @JoinColumn(name = "fk_user"), inverseJoinColumns = @JoinColumn(name = "fk_challenge"))
     private List<Challenge> challengeToDo = new ArrayList<>();
 
-    @JsonIgnore // pour afficher la liste des challenges sans le contenu
+     // pour afficher la liste des challenges sans le contenu
     @OneToMany (mappedBy = "challenge")
         private List<ContentChallenge> contentChallengeList;
 
