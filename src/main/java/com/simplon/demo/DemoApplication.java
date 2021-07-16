@@ -23,7 +23,7 @@ public class DemoApplication {
         };
     }
 
-    @Bean
+    /*@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
@@ -31,7 +31,7 @@ public class DemoApplication {
                 registry.addMapping("/api/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
-    }
+    }*/
 
 }
 
