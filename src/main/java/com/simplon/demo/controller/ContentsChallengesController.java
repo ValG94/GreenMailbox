@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/contents")
+@RequestMapping("/api/challenges/{challengeId}/contents")
 @CrossOrigin("http://localhost:4200")
 public class ContentsChallengesController {
     private ContentChallengeRepository contentChallengeRepository;
@@ -22,15 +22,16 @@ public class ContentsChallengesController {
         this.contentChallengeRepository = contentChallengeRepository;
     }
 
-        //Méthode qui nous permettra de récupérer la liste de tous les contenus des challenges en BDD
+        //Méthode qui nous permettra de récupérer la liste de tous les contenus pour un ID challenge
         @GetMapping
-        public List<ContentChallenge> getAllContentChallenge() {
-            return contentChallengeRepository.findAll();
+        public List<ContentChallenge> getContentChallengeListByChallengeId(@PathVariable Long challengeId) {
+            return contentChallengeRepository.findContentChallengeByChallengeId(challengeId);
         }
 
-        @GetMapping("/{id}")
-            public Optional<ContentChallenge> getContentChallengeById(@PathVariable Long id){
-       return contentChallengeRepository.findById(id);
+        //Méthode pour récupérer un contenu par ID content_challenge (NB: pas besoin de faire référence au challengeId)
+        @GetMapping("/{contentId}")
+            public Optional<ContentChallenge> getContentChallengeById(@PathVariable Long contentId){
+       return contentChallengeRepository.findById(contentId);
         }
 
         //Méthode qui nous permettra de créer un nouveau contenu en BDD
@@ -40,20 +41,14 @@ public class ContentsChallengesController {
         }
 
         //Methode qui nous permettra de mettre à jour le contenu d'un challenge en BDD avec l'id
-        @PutMapping(value = "/{id}")
-        public ResponseEntity<ContentChallenge> updateJson(@PathVariable("id") int id, @RequestBody ContentChallenge resource) {
-            if (resource.getId()!=id) {
-                return new ResponseEntity<>(resource, HttpStatus.BAD_REQUEST);
-            }
+        @PutMapping // modif 30/08 => simplication de la méthode en supprimant l'information du challengeId, info dans le request body (value = "/{contentId}")
+        public ResponseEntity<ContentChallenge> updateJson(@RequestBody ContentChallenge resource) {
             return new ResponseEntity<>(contentChallengeRepository.save(resource), HttpStatus.OK);
         }
 
         //Méthode qui nous permettra de supprimer des contenus grâce à leur id
-        @DeleteMapping("/{id}")
-        public void deleteContent(@PathVariable long id){
-            contentChallengeRepository.deleteById(id);
+        @DeleteMapping("/{contentId}")
+        public void deleteContent(@PathVariable Long contentId){
+            contentChallengeRepository.deleteById(contentId);
         }
-
-
-
     }
