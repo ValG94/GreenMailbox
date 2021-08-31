@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/challenges")
+@RequestMapping("/api/challengeList")
 //@CrossOrigin("http://localhost:4200")
 public class ChallengesController {
     private ChallengeRepository challengeRepository;
