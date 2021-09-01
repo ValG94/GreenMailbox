@@ -17,7 +17,8 @@ VALUES (1, 200, 5, 'Clean Green', 'Découvrir le Clean green pour rendre sa boit
         '16-07-2021');
 
 insert into content_challenge (id, answers, questions, challenge_id)
-VALUES (1, 'True', '"Un mail est-il plus lourd vs publication Teams ?"', 1);
+VALUES (1, 'True', '"Un mail est-il plus lourd vs publication Teams ?"', 1),
+       (2, 'False', 'Pour diminuer mon empreinte, il suffit de vider régulièrement ma boîte mail',1);
 
 /*insert into resource (id, url_resource)
 VALUES (1, 'https://support.microsoft.com/fr-fr/office/organiser-votre-bo%C3%AEte-de-r%C3%A9ception-9aea8ad7-883d-459b-a3ea-ae20f06cfb32'),
